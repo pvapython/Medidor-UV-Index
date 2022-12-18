@@ -1,28 +1,35 @@
 //Declaração de bibliotecas
-#include <RTClib.h>
-#include <SPI.h>
-#include <SD.h>
-#include <Wire.h>
-#include <Time.h>
+//A RTC ou real-time clock, é um relógio que mantém o controle do tempo real e possui calendário completo. 
+//Ele está presente em quase todos os dispositivos eletrônicos que precisam manter um controle preciso do tempo.
+#include <RTClib.h>  //Para maiores detalhes, acesse: https://www.robocore.net/tutoriais/primeiros-passos-rtc-ds1307-com-arduino
+//A biblioteca SPI permite que você se comunique com dispositivos SPI, tendo o Arduino como dispositivo controlador. 
+//A SPI vem com todas as plataformas Arduino (avr, megaavr, mbed, samd, sam, arc32), então você não precisa instalar a biblioteca separadamente.
+#include <SPI.h> //Para maiores detalhes, acesse: https://docs.arduino.cc/learn/communication/spi?_gl=1*nyo1xu*_ga*MTQ3MzY1NDE0Mi4xNjcxMzIyNjgw*_ga_NEXN8H46L5*MTY3MTM5MjI2My40LjEuMTY3MTM5MzM0My4wLjAuMA..
+//A biblioteca SD permite ler e gravar em cartões SD.
+#include <SD.h> //Para obter mais informações sobre esta biblioteca, acesse: http://www.arduino.cc/en/Reference/SD
+// A biblioteca Wire permite a cmunicação entre o Arduino e a placa shield
+#include <Wire.h> // Para maiores detalhes, acesse: https://upscfever.com/upsc-fever/en/programming/iot/23.html
+//A biblioteca Time fornece a funcionalidade de cronometragem no Arduino
+#include <Time.h> //Para maiores detalhes, acesse: https://www.tutorialspoint.com/arduino-time-library-introduction
 
-const int chipSelect = 10;
-RTC_DS1307 RTC;
+const int chipSelect = 10;//Pino CS do modulo cartao SD
+RTC_DS1307 RTC; //Módulo Real Time Clock RTC DS1307 em conjunto com o Arduino permite obter informações de horas, dia e data atual. Estas informações serão exibidas no monitor serial do ambiente de programação do Arduino.
 
 int Pino_CS = 10;
 RTC_DS1307 rtc;
 File file;
 
 //Definindo os pinos dos sensores
-int pino_sensor = A0;
-int pino_sensor2 = A2;
+int pino_sensor = A0; //sensor livre
+int pino_sensor2 = A2; //sensor encapsulado pela estrutura protetora
 
 //Inicializando os valores
 int valor_sensor = 0;
 int valor_sensor2 = 0;
 
 int posicao;
-String UV_index = "0";
-String UV_index2 = "0";
+String UV_index = "0"; // usando uma string constante
+String UV_index2 = "0"; // usando uma string constante
 
 void setup(void){
   Serial.begin(9600);
